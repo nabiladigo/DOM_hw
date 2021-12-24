@@ -23,7 +23,11 @@ your 'js-gallery'.
 Hint: you can call .querySelector on a node you've already retrieved from the DOM.
 
 */
+let gallery =document.querySelector('.js-gallery');
+let list = document.querySelectorAll('.js-gallery-item');
 
+console.log(gallery);
+console.log(list);
 
 
 /*
@@ -43,6 +47,11 @@ equal to the width of a single slide.
 To get the width, try .getBoundingClientRect() or .offsetWidth.
 
 */
+let slideCount = list.length;
+let slideWidth =list[0].getBoundingClientRect().width;
+
+console.log(slideCount);
+console.log(slideWidth);
 
 
 
@@ -66,8 +75,11 @@ Create a function called transitionSlide that, for now, just
 `console.log`'s 'Called!' ever 5000 miliseconds
 
 */
-
-
+// let transitionSlide = setInterval(function(){
+   
+//   },5000);
+  
+//   // console.log('called!');
 
 /*
 
@@ -91,3 +103,18 @@ Inside transitionSlide() we need to do two things:
 Hint: delta should always be a negative number
 
 */
+
+let timer = setInterval(transitionSlide, 5000);
+ 
+let currentSlide = 1
+
+function transitionSlide() {
+  if (currentSlide < slideCount) {
+    gallery.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    currentSlide++;
+  } else {
+    currentSlide = 1
+    gallery.style.transform = `translateX(0px)`;
+  }
+}
+
